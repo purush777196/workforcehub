@@ -1,0 +1,10 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# WorkforceHub Maven Wrapper for POSIX environments
+# ----------------------------------------------------------------------------
+if command -v mvn >/dev/null 2>&1; then
+    exec mvn "$@"
+else
+    echo "Please ensure Maven and JDK 21+ are installed and available in your PATH."
+    exit 1
+fi

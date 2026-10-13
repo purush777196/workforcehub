@@ -1,0 +1,433 @@
+/* ==========================================================================
+   WorkforceHub — Phase 5: Leave Management Styles
+   ========================================================================== */
+
+/* Summary Cards Grid (5-column responsive) */
+.leaves-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+@media (min-width: 1200px) {
+  .leaves-stats-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Tabs Navigation */
+.leaves-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.leaves-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.leaves-tab-btn:hover {
+  color: var(--color-text-primary);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.leaves-tab-btn.active {
+  color: var(--color-primary);
+  font-weight: 600;
+  border-bottom-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.leaves-tab-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+.leaves-tab-btn.active .leaves-tab-badge {
+  background-color: rgba(37, 99, 235, 0.12);
+  color: var(--color-primary);
+}
+
+/* Filter Bar */
+.leaves-filter-bar {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.leaves-filter-row-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.leaves-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.leaves-search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+
+.leaves-search-input {
+  width: 100%;
+  padding: 0.6rem 0.85rem 0.6rem 2.4rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.leaves-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.leaves-filter-row-bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.leaves-select-control {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+}
+
+.leaves-select {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.825rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  min-width: 130px;
+}
+
+.leaves-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.leaves-date-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+}
+
+.leaves-date-input {
+  padding: 0.45rem 0.65rem;
+  font-size: 0.825rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+}
+
+.leaves-date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.leaves-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.825rem;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-left: auto;
+}
+
+.leaves-clear-btn:hover {
+  color: #dc2626;
+  border-color: #fca5a5;
+  background-color: #fef2f2;
+}
+
+/* Leave Days Pill */
+.leave-days-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.775rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+/* Action Button Group */
+.leave-actions-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.btn-action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-action-icon:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+  border-color: #cbd5e1;
+}
+
+.btn-action-icon.approve:hover {
+  background-color: #ecfdf5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+
+.btn-action-icon.reject:hover {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.btn-action-icon.cancel:hover {
+  background-color: #fff7ed;
+  color: #ea580c;
+  border-color: #ffedd5;
+}
+
+/* Policy Allowance Cards in Balances View */
+.policy-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.policy-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.policy-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.policy-card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.policy-card-allowance {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.policy-card-desc {
+  font-size: 0.785rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* Balances Table Progress Bar */
+.balance-progress-wrap {
+  width: 100%;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.balance-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.balance-progress-bar.primary {
+  background-color: var(--color-primary);
+}
+
+.balance-progress-bar.warning {
+  background-color: #f59e0b;
+}
+
+.balance-progress-bar.danger {
+  background-color: #ef4444;
+}
+
+/* Modal Form Specifics */
+.modal-field-note {
+  font-size: 0.775rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.modal-notice-box {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.825rem;
+  line-height: 1.45;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+.modal-notice-box.info {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.modal-notice-box.warning {
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+}
+
+.modal-notice-box.danger {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.leave-recap-box {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.leave-recap-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.leave-recap-label {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+.leave-recap-value {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .leaves-filter-row-top {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leaves-search-wrap {
+    min-width: 100%;
+  }
+
+  .leaves-filter-row-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leaves-select-control,
+  .leaves-date-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leaves-select,
+  .leaves-date-input {
+    width: 100%;
+  }
+
+  .leaves-clear-btn {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  .leave-recap-box {
+    grid-template-columns: 1fr;
+  }
+}
